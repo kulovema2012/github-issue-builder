@@ -58,8 +58,6 @@ An issue is too big when any of these is true:
 - It touches several unrelated parts of the system (e.g. new DB schema + new admin UI + public API + billing)
 - An agent would likely need more than one focused session / one reasonably sized PR
 
-When the request comes with a near deadline (a sale next month, a launch date), size it to the smallest version that meets the deadline. Put the rest under *Out of scope* as named follow-ups rather than growing it into an epic.
-
 When it is too big, **propose a split** before writing: one epic issue plus child issues that each deliver one working, testable slice. For each child, work out what it depends on:
 
 - **Depends on nothing** → can start as soon as the epic branch exists

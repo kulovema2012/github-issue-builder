@@ -21,7 +21,7 @@ Ask your agent something like "make an issue for …", "write a ticket: …", or
 1. **Captures the idea**: who has what problem, what change fixes it, and its type (feature, bug, improvement, chore, docs).
 2. **Looks at the repo**: README, agent docs, build and test commands, the default branch, duplicate issues and existing labels.
 3. **Asks up to 4 clarifying questions, in one round**, and only when the answer changes the issue. One of them is the question behind most disappointing features: *is this a one-off, or will there be more of them?*
-4. **Checks the size**: one issue, or an epic plus child issues with a dependency graph and a parallel build order. Deadline-driven requests are sized to the smallest version that ships in time.
+4. **Checks the size**: one issue, or an epic plus child issues with a dependency graph and a parallel build order.
 5. **Writes the draft**: summary, spec, out of scope, testable acceptance criteria (Given/When/Then only where needed), branch and worktree setup, a step-by-step plan with a check after each step, a test plan, and risks and open questions.
 6. **Delivers it**: files the issue with `gh` after you confirm, creates the epic branch for epics, and replaces the placeholders with real issue numbers.
 
@@ -29,7 +29,7 @@ Branch conventions: single issues branch from the default branch. For an epic, t
 
 ## Tested
 
-The "one-off or pattern?" question and the deadline-sizing rule came from real client feedback: a single "lifetime package" feature that should have been a reusable package system. Both were kept only after a blind A/B test. Six raw ideas, including a bug and a chore as controls, were run twice through each version and judged without the judges knowing which version wrote which draft. The new version won 9 of 12 pairs.
+The "one-off or pattern?" question came from real client feedback: a single "lifetime package" feature that should have been a reusable package system. It was kept only after a blind A/B test. Six raw ideas, including a bug and a chore as controls, were run twice through each version and judged without the judges knowing which version wrote which draft. The new version won 9 of 12 pairs.
 
 ## License
 
