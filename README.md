@@ -12,7 +12,14 @@ npx github-issue-builder verify             # check the installed copies match t
 npx github-issue-builder uninstall          # removes the skill, keeping a backup
 ```
 
-Add `--dry-run` to see what would change. An existing copy is backed up to `~/.github-issue-builder-backups/` before it is replaced. To file issues directly, the skill uses an authenticated [`gh`](https://cli.github.com/) CLI or a GitHub connector. Without one, it hands you the drafts to copy and paste.
+Add `--dry-run` to see what would change.
+
+**Updating.** Run `npx github-issue-builder@latest install` again. The installer:
+- backs up any existing copy to `~/.github-issue-builder-backups/` and replaces it, or says "already up to date";
+- removes old copies from `~/.codex/skills` (and from `$CODEX_HOME/skills`), so Codex doesn't load the skill twice. Pass `--keep-legacy` to leave them;
+- warns if your **claude.ai account** also has this skill (synced into `~/.claude/skills/synced/`). Only claude.ai can update that copy, so replace or delete it in claude.ai → Settings → Capabilities → Skills.
+
+`verify` fails while an outdated duplicate is still around. To file issues directly, the skill uses an authenticated [`gh`](https://cli.github.com/) CLI or a GitHub connector. Without one, it hands you the drafts to copy and paste.
 
 ## Usage
 
