@@ -135,11 +135,42 @@ function sameAsPackage(dir, files) {
   }
 }
 
+function realpathOrNull(p) {
+  try {
+    return fs.realpathSync(p).toLowerCase();
+  } catch {
+    return null;
+  }
+}
+
+// The other install target this one is a link to, if any. Every target is checked, not only the ones --only
+// selected, so an --only claude install never replaces a link into the Codex folder.
+function linkedTarget(t) {
+  if (!exists(t.dir) || !fs.lstatSync(t.dir).isSymbolicLink()) return null;
+  const real = realpathOrNull(t.dir);
+  return [
+    { tool: 'Claude Code', dir: path.join(ROOT, '.claude', 'skills', NAME) },
+    { tool: 'Codex', dir: path.join(ROOT, '.agents', 'skills', NAME) },
+  ].find((o) => o.dir !== t.dir && real && realpathOrNull(o.dir) === real && !fs.lstatSync(o.dir).isSymbolicLink()) ?? null;
+}
+
 function install() {
   const files = listFiles(SRC);
   console.log(`${DRY ? '[dry run] ' : ''}Installing ${NAME} (${SCOPE} scope, ${files.length} files)`);
-  for (const t of TARGETS) {
+  for (const target of TARGETS) {
+    let t = target;
     console.log(`- ${t.tool}: ${t.dir}`);
+    // A link from one target to another (e.g. ~/.claude/skills/x -> ~/.agents/skills/x, a single-source setup)
+    // is kept as is: updating the folder it points to updates both tools.
+    const other = linkedTarget(t);
+    if (other && TARGETS.some((o) => o.dir === other.dir)) {
+      console.log(`  kept: it links to the ${other.tool} copy, which is updated below`);
+      continue;
+    }
+    if (other) {
+      console.log(`  kept the link; updating the folder it points to: ${other.dir}`);
+      t = other;
+    }
     if (exists(t.dir)) {
       if (sameAsPackage(t.dir, files)) {
         console.log('  already up to date');

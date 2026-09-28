@@ -16,6 +16,7 @@ Add `--dry-run` to see what would change.
 
 **Updating.** Run `npx github-issue-builder@latest install` again. The installer:
 - backs up any existing copy to `~/.github-issue-builder-backups/` and replaces it, or says "already up to date";
+- keeps a link between the two install folders (for example `~/.claude/skills/github-issue-builder` pointing at `~/.agents/skills/github-issue-builder`) and updates the folder it points to;
 - removes old copies from `~/.codex/skills` (and from `$CODEX_HOME/skills`), so Codex doesn't load the skill twice. Pass `--keep-legacy` to leave them;
 - warns if your **claude.ai account** also has this skill (synced into `~/.claude/skills/synced/`). Only claude.ai can update that copy, so replace or delete it in claude.ai → Settings → Capabilities → Skills.
 
