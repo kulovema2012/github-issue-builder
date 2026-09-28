@@ -1,0 +1,37 @@
+{
+  "name": "github-issue-builder",
+  "version": "1.0.0",
+  "description": "Agent skill for Claude Code and Codex: turn a rough feature or bug idea into an agent-ready GitHub issue (or epic + child issues) with spec, acceptance criteria, plan, test plan and branch/worktree setup",
+  "type": "module",
+  "bin": {
+    "github-issue-builder": "github-issue-builder.mjs"
+  },
+  "files": [
+    "github-issue-builder.mjs",
+    "payload/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "claude-code",
+    "codex",
+    "skill",
+    "agent-skills",
+    "github",
+    "github-issues",
+    "issue-template",
+    "git-worktree"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kulovema2012/github-issue-builder.git"
+  },
+  "homepage": "https://github.com/kulovema2012/github-issue-builder#readme",
+  "bugs": {
+    "url": "https://github.com/kulovema2012/github-issue-builder/issues"
+  }
+}
