@@ -1,6 +1,6 @@
 {
   "name": "github-issue-builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Agent skill for Claude Code and Codex: turn a rough feature or bug idea into an agent-ready GitHub issue (or epic + child issues) with spec, acceptance criteria, plan, test plan and branch/worktree setup",
   "type": "module",
   "bin": {
